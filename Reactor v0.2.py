@@ -47,7 +47,7 @@ Rctr_Di = 0.02 #m
 Rctr_Do = 0.01 #m
 
 #Our Reactor Properties
-Pyrocycle_T = 623.15 #K
+Pyrocycle_T = 723.15 #K
 
 #Kinetic Properties
 
