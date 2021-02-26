@@ -51,10 +51,11 @@ Pyrocycle_T = 723.15 #K
 
 #Kinetic Properties
 
+# From microreactor
 PS_Ea = 83 #kJ/mol
 PS_ko = 1.82E4 #s^-1
 
-Sty_Ea = 132 #kJ/mol
+Sty_Ea = 123 #kJ/mol
 Sty_ko = 5.08E7 #s^-1
 Sty_mass = 104.15 # g/mol
 
@@ -135,7 +136,7 @@ def TotalReaction(C_array, t):
     
     #Obtaining Rate of Generation for each species
     
-    #dPSdt = -1 * (Sty_r + Ben_r + Tol_r)
+    # dPSdt = -1 * (Sty_r + Ben_r + Tol_r)
     dPSdt = -1 * PSReaction(PS)
     dStydt = Sty_r
     #dMetdt = Met_r
@@ -151,7 +152,7 @@ def TotalReaction(C_array, t):
 #Integrating Overall Reaction
 
 W_initial = [10, 0, 0, 0]
-t_interval = np.linspace(0,40)
+t_interval = np.linspace(0, 400)
 
 Y_out_PS = odeint(TotalReaction, W_initial, t_interval)
 
