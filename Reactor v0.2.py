@@ -56,15 +56,19 @@ PS_ko = 1.82E4 #s^-1
 
 Sty_Ea = 132 #kJ/mol
 Sty_ko = 5.08E7 #s^-1
+Sty_mass = 104.15 # g/mol
 
 Met_Ea = 126 #kJ/mol
 Met_ko = 2.1E7 #s^-1
+Met_mass = 16.04 # g/mol
 
 Ben_Ea = 123 #kJ/mol
 Ben_ko = 1.47E7 #s^-1
+Ben_mass = 78.11 # g/mol
 
 Tol_Ea = 122 #kJ/mol
 Tol_ko = 1.19E7 #s^-1
+Tol_mass = 92.14 # g/mol
 
 #Constants
 R = 8.314E-3 #kJ/K*mol
