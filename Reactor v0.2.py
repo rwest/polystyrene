@@ -79,52 +79,55 @@ R = 8.314E-3 #kJ/K*mol
 
 #Reaction Rate Calculations for Individual Products
 
-def PSReaction(C_int):
-    PS = C_int
-    
-    r = PS_ko * math.e**(-1 * PS_Ea/(R * Pyrocycle_T)) * PS
-    
-    return r
+def PSReaction(PS):
+    k = PS_ko * math.exp(-1 * PS_Ea/(R * Pyrocycle_T))
+    return k * PS
 
-def StyReaction(C_int):
-    PS = C_int
-    
-    r = Sty_ko * math.e**(-1 * Sty_Ea/(R * Pyrocycle_T)) * PS
-    
-    return r
+def StyReaction(PS):
+    k = Sty_ko * math.exp(-1 * Sty_Ea/(R * Pyrocycle_T))
+    return k * PS
 
-def MetReaction(C_int):
-    PS = C_int
-    
-    r = Met_ko * math.e**(-1 * Met_Ea/(R * Pyrocycle_T)) * PS
-    
-    return r
+def MetReaction(PS):
+    k = Met_ko * math.exp(-1 * Met_Ea/(R * Pyrocycle_T))
+    return k * PS
 
-def BenReaction(C_int):
-    PS = C_int
-    
-    r = Ben_ko * math.e**(-1 * Ben_Ea/(R * Pyrocycle_T)) * PS
-    
-    return r
+def BenReaction(PS):
+    k = Ben_ko * math.exp(-1 * Ben_Ea/(R * Pyrocycle_T))
+    return k * PS
 
-def TolReaction(C_int):
-    PS = C_int
-    
-    r = Tol_ko * math.e**(-1 * Tol_Ea/(R * Pyrocycle_T)) * PS
-    
-    return r
+def TolReaction(PS):
+    k = Tol_ko * math.exp(-1 * Tol_Ea/(R * Pyrocycle_T))
+    return k * PS
 
 
 # In[4]:
 
 
+T = Pyrocycle_T
+Sty_ko * math.exp(-1*Sty_Ea/(R*T))
+
+
+# In[5]:
+
+
+StyReaction(1)
+
+
+# In[6]:
+
+
+BenReaction(1)
+
+
+# In[7]:
+
+
 #Reaction Kinetics for Overall Reaction
 
-def TotalReaction(C_array,t):
+def TotalReaction(C_array, t):
     PS = C_array[0]
     
     #Establishing Reaction Rates from initial PS feed
-    
     Sty_r = StyReaction(PS)
     #Met_r = MetReaction(PS)
     Ben_r = BenReaction(PS)
@@ -132,7 +135,8 @@ def TotalReaction(C_array,t):
     
     #Obtaining Rate of Generation for each species
     
-    dPSdt = -1 * Sty_r - Ben_r - Tol_r
+    #dPSdt = -1 * (Sty_r + Ben_r + Tol_r)
+    dPSdt = -1 * PSReaction(PS)
     dStydt = Sty_r
     #dMetdt = Met_r
     dBendt = Ben_r
@@ -141,24 +145,24 @@ def TotalReaction(C_array,t):
     return [dPSdt, dStydt, dBendt, dToldt]
 
 
-# In[5]:
+# In[8]:
 
 
 #Integrating Overall Reaction
 
 W_initial = [10, 0, 0, 0]
-t_interval = np.linspace(0,1000)
+t_interval = np.linspace(0,40)
 
 Y_out_PS = odeint(TotalReaction, W_initial, t_interval)
 
 
-# In[6]:
+# In[9]:
 
 
 Y_out_PS
 
 
-# In[7]:
+# In[10]:
 
 
 #Plotting the Concentrations of the Reactant and Products
