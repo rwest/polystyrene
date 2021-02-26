@@ -55,6 +55,11 @@ Pyrocycle_T = 723.15 #K
 PS_Ea = 83 #kJ/mol
 PS_ko = 1.82E4 #s^-1
 
+# From the spouted bed reactor
+PS_Ea = 123 #kJ/mol
+PS_ko = 1.27e7 # s^-1
+
+
 Sty_Ea = 123 #kJ/mol
 Sty_ko = 5.08E7 #s^-1
 Sty_mass = 104.15 # g/mol
